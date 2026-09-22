@@ -3,317 +3,1797 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AllzDigitalStore - Jasa pembuatan website mulai Rp15.000 dan jasa bikin bot bebas request Rp25.000.">
-<meta name="theme-color" content="#08080e">
-<title>AllzDigitaStore — Website & Bot Mulai 15K</title>
+<meta name="theme-color" content="#030303">
+
+<title>AllzDigitalStore — Dragon Digital</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --bg:#07070c;--bg2:#0d0d15;--card:rgba(18,18,29,.82);
-  --text:#f7f7fb;--muted:#a6a6b8;--line:rgba(255,255,255,.09);
-  --p:#8b5cf6;--p2:#22d3ee;--ok:#34d399;--danger:#fb7185;
-  --radius:22px;--shadow:0 20px 70px rgba(0,0,0,.4)
+  --bg:#030303;
+  --bg2:#080909;
+  --cyan:#00eaff;
+  --blue:#087eff;
+  --red:#ff174d;
+  --orange:#ff5a1f;
+  --gold:#ffb52e;
+  --text:#f5fbff;
+  --muted:#8b989f;
+  --line:rgba(255,255,255,.09);
+  --glass:rgba(7,10,12,.62);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  color:var(--text);line-height:1.6;overflow-x:hidden;
+  font-family:Inter,sans-serif;
   background:
-    radial-gradient(circle at 8% 0%,rgba(139,92,246,.18),transparent 28%),
-    radial-gradient(circle at 95% 12%,rgba(34,211,238,.12),transparent 26%),
-    var(--bg)
+    radial-gradient(circle at 80% 10%,rgba(255,50,20,.06),transparent 30%),
+    #030303;
+  color:var(--text);
+  overflow-x:hidden;
 }
-a{text-decoration:none;color:inherit}button{font:inherit}
-.container{width:min(1120px,92%);margin:auto}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:100;
+  opacity:.18;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:55px 55px;
+  mask-image:linear-gradient(to bottom,#000,transparent 85%);
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:99;
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255,255,255,.018),
+    transparent
+  );
+  background-size:100% 7px;
+  opacity:.18;
+  animation:scan 8s linear infinite;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font-family:inherit;
+}
+
+.wrap{
+  width:min(1150px,calc(100% - 30px));
+  margin:auto;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+  position:fixed;
+  z-index:80;
+  top:0;
+  left:0;
+  width:100%;
+  padding:18px 0;
+  transition:.35s ease;
+}
+
+nav.scrolled{
+  background:rgba(2,3,4,.72);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
 .nav{
-  position:fixed;z-index:50;top:0;left:0;right:0;
-  background:rgba(7,7,12,.75);backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line)
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-.nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900}
-.logo{
-  width:43px;height:43px;border-radius:13px;display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--p),var(--p2));
-  box-shadow:0 8px 28px rgba(139,92,246,.28);font-weight:950;color:#fff;
-  position:relative;overflow:hidden
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:"Space Grotesk";
+  font-weight:700;
+  font-size:15px;
 }
-.logo:after{content:"";position:absolute;inset:1px;border-radius:12px;background:#0b0b12;z-index:0}
-.logo span{position:relative;z-index:1;font-size:14px}
-.brand-name{font-size:19px;letter-spacing:-.7px}
-.brand-name b{background:linear-gradient(90deg,var(--p),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.nav-links{display:flex;gap:25px;color:#c8c8d4;font-size:13px}
-.nav-links a:hover{color:#fff}
-.menu{display:none;background:none;border:0;color:#fff;font-size:25px}
-.hero{min-height:760px;padding:150px 0 90px;display:flex;align-items:center}
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:55px;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(139,92,246,.3);background:rgba(139,92,246,.09);padding:8px 13px;border-radius:999px;color:#d9ccff;font-size:12px;margin-bottom:22px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 14px var(--ok)}
-h1{font-size:clamp(43px,6vw,72px);line-height:1.02;letter-spacing:-3px}
-.gradient{background:linear-gradient(100deg,#fff,#c4b5fd 50%,#67e8f9);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:var(--muted);font-size:17px;max-width:650px;margin:25px 0 30px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
+
+.mark{
+  width:37px;
+  height:37px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(135deg,#ff3117,#7d0909 55%,#020202);
+  border:1px solid rgba(255,100,50,.45);
+  box-shadow:
+    0 0 25px rgba(255,40,20,.22),
+    inset 0 0 15px rgba(255,255,255,.08);
+}
+
+.mark:before{
+  content:"";
+  position:absolute;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:rgba(255,80,20,.5);
+  filter:blur(15px);
+}
+
+.mark span{
+  position:relative;
+  z-index:2;
+}
+
+.links{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  color:#9ca9af;
+  font-size:12px;
+}
+
+.links a{
+  transition:.25s;
+}
+
+.links a:hover{
+  color:#fff;
+}
+
+.navcta{
+  padding:10px 16px;
+  border-radius:12px;
+  color:#fff!important;
+  border:1px solid rgba(255,60,30,.35);
+  background:rgba(255,45,20,.07);
+  box-shadow:inset 0 0 20px rgba(255,30,10,.03);
+}
+
+.navcta:hover{
+  background:rgba(255,50,25,.13);
+  box-shadow:0 0 25px rgba(255,40,20,.12);
+}
+
+.menu{
+  display:none;
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:25px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:-3%;
+  z-index:-5;
+
+  /*
+  ==========================================================
+  GANTI URL DI BAWAH DENGAN LINK DIRECT CATBOX KAMU
+  ==========================================================
+  */
+  background:
+    #020202
+    url("ISI_LINK_CATBOX_DI_SINI")
+    center center/cover no-repeat;
+
+  filter:
+    saturate(1.2)
+    contrast(1.08)
+    brightness(.78);
+
+  transform:scale(1.04);
+  animation:dragonZoom 16s ease-in-out infinite alternate;
+}
+
+.hero-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #030303 0%,
+      rgba(3,3,3,.92) 18%,
+      rgba(3,3,3,.58) 43%,
+      rgba(3,3,3,.16) 72%,
+      #030303 100%
+    ),
+    linear-gradient(
+      0deg,
+      #030303 0%,
+      transparent 35%,
+      rgba(0,0,0,.25) 100%
+    );
+}
+
+.dragon-glow{
+  position:absolute;
+  width:500px;
+  height:500px;
+  right:-130px;
+  top:10%;
+  border-radius:50%;
+  background:rgba(255,45,15,.12);
+  filter:blur(120px);
+  z-index:-3;
+  animation:glowPulse 5s ease-in-out infinite;
+}
+
+.dragon-glow.blue{
+  width:350px;
+  height:350px;
+  left:-160px;
+  bottom:5%;
+  background:rgba(0,180,255,.08);
+}
+
+.scan{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(
+      transparent 0%,
+      rgba(255,60,30,.045) 48%,
+      transparent 52%
+    );
+  background-size:100% 9px;
+  opacity:.28;
+  animation:scan 7s linear infinite;
+}
+
+.hero-content{
+  max-width:750px;
+  padding-top:65px;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:8px 13px;
+  border-radius:99px;
+  border:1px solid rgba(255,70,35,.3);
+  background:rgba(15,5,3,.5);
+  backdrop-filter:blur(12px);
+  color:#ffd4ca;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.8px;
+  animation:rise .8s both;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#ff4b26;
+  box-shadow:
+    0 0 8px #ff4b26,
+    0 0 20px rgba(255,60,20,.7);
+  animation:dotPulse 1.6s infinite;
+}
+
+h1{
+  font-family:"Space Grotesk";
+  font-size:clamp(51px,8vw,94px);
+  line-height:.87;
+  letter-spacing:-5px;
+  margin-top:23px;
+  animation:rise .8s .08s both;
+}
+
+.fire{
+  color:#ff4b27;
+  text-shadow:
+    0 0 20px rgba(255,55,25,.4),
+    0 0 55px rgba(255,40,15,.15);
+}
+
+.cyan{
+  color:var(--cyan);
+  text-shadow:0 0 35px rgba(0,234,255,.25);
+}
+
+.hero p{
+  max-width:620px;
+  color:#aeb8bd;
+  line-height:1.8;
+  font-size:14px;
+  margin-top:25px;
+  animation:rise .8s .16s both;
+}
+
+.actions{
+  display:flex;
+  gap:11px;
+  margin-top:30px;
+  animation:rise .8s .24s both;
+}
+
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 19px;
-  border-radius:13px;border:1px solid var(--line);font-weight:800;font-size:13px;
-  cursor:pointer;transition:.25s
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  padding:14px 21px;
+  border-radius:13px;
+  font-size:12px;
+  font-weight:800;
+  border:1px solid rgba(255,255,255,.1);
+  transition:.3s;
 }
-.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22)}
-.btn-primary{background:linear-gradient(100deg,var(--p),#6d5dfc);box-shadow:0 10px 35px rgba(139,92,246,.2)}
-.btn-ghost{background:rgba(255,255,255,.035)}
-.hero-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(24,24,38,.92),rgba(12,12,20,.75));border-radius:28px;padding:25px;box-shadow:var(--shadow)}
-.window{border:1px solid var(--line);border-radius:17px;background:#0a0a10;overflow:hidden}
-.window-top{padding:12px 15px;border-bottom:1px solid var(--line);display:flex;gap:6px}
-.circle{width:8px;height:8px;border-radius:50%;background:#555}
-.mock{padding:22px}.mock-title{font-size:28px;font-weight:950}.mock-price{font-size:35px;font-weight:950;margin:14px 0}.mock-price small{font-size:12px;color:var(--muted)}
-.mock-list{display:grid;gap:10px;color:#c8c8d5;font-size:13px}.mock-list span:before{content:"✓";color:var(--ok);margin-right:8px}
-section{padding:92px 0}.section-head{text-align:center;max-width:700px;margin:0 auto 42px}
-.eyebrow{color:#a78bfa;text-transform:uppercase;font-size:11px;font-weight:900;letter-spacing:2px}
-.section-head h2{font-size:clamp(30px,4vw,45px);letter-spacing:-1.5px;margin:8px 0}.section-head p{color:var(--muted)}
-.pricing{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:23px;backdrop-filter:blur(12px);box-shadow:0 10px 45px rgba(0,0,0,.16);transition:.25s}
-.card:hover{transform:translateY(-5px);border-color:rgba(139,92,246,.45)}
-.card.popular{border-color:rgba(139,92,246,.6);box-shadow:0 0 0 1px rgba(139,92,246,.08),0 20px 60px rgba(139,92,246,.12)}
-.tag{display:inline-block;font-size:10px;font-weight:900;padding:5px 8px;border-radius:999px;background:rgba(139,92,246,.15);color:#c4b5fd;margin-bottom:14px}
-.card h3{font-size:18px}.price{font-size:30px;font-weight:950;margin:8px 0 18px}.price small{font-size:11px;color:var(--muted);font-weight:500}
-ul{list-style:none;display:grid;gap:9px;margin-bottom:20px;color:#c7c7d2;font-size:12.5px}.card li:before{content:"✓";color:var(--ok);font-weight:900;margin-right:7px}
-.card .btn{width:100%;font-size:12px}
-.features{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.feature-icon{font-size:25px;margin-bottom:13px}.feature h3{font-size:16px;margin-bottom:6px}.feature p{font-size:13px;color:var(--muted)}
-.addons{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.addon{display:flex;justify-content:space-between;gap:15px;align-items:center}.addon p{color:var(--muted);font-size:12px}.addon strong{white-space:nowrap;color:#ddd}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.step{text-align:center}.num{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;margin:0 auto 15px;background:rgba(139,92,246,.13);border:1px solid rgba(139,92,246,.3);color:#c4b5fd;font-weight:900}.step h3{font-size:14px}.step p{color:var(--muted);font-size:12px;margin-top:5px}
-.faq{max-width:800px;margin:auto;display:grid;gap:10px}.faq details{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:17px 19px}.faq summary{cursor:pointer;font-weight:700;font-size:14px}.faq p{color:var(--muted);font-size:13px;margin-top:10px}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.contact-card h3{margin-bottom:5px}.contact-card p{color:var(--muted);font-size:13px;margin-bottom:15px}
-.cta{border:1px solid var(--line);background:linear-gradient(120deg,rgba(139,92,246,.15),rgba(34,211,238,.08));border-radius:28px;padding:48px;text-align:center}.cta h2{font-size:36px;letter-spacing:-1px}.cta p{color:var(--muted);margin:10px auto 22px;max-width:580px}
-footer{padding:35px 0;border-top:1px solid var(--line);color:#858593;font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-links{display:flex;gap:18px}
-.float{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;flex-direction:column;gap:9px}.float a{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#15151f;border:1px solid var(--line);font-size:20px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#171721;border:1px solid var(--line);padding:12px 17px;border-radius:12px;color:#fff;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:100}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:1000px){.pricing{grid-template-columns:repeat(2,1fr)}.features,.addons{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:760px){
-  .nav-links{display:none;position:absolute;top:74px;left:4%;right:4%;padding:15px;background:#0d0d15;border:1px solid var(--line);border-radius:16px;flex-direction:column;gap:15px}
-  .nav-links.open{display:flex}.menu{display:block}.hero{padding-top:125px}.hero-grid{grid-template-columns:1fr;gap:35px}h1{letter-spacing:-2px}
-  .pricing,.features,.addons,.steps,.contact-grid{grid-template-columns:1fr}.cta{padding:32px 20px}.cta h2{font-size:28px}
+
+.primary{
+  color:#fff;
+  background:
+    linear-gradient(135deg,#ff4c25,#c20e0e);
+  border-color:rgba(255,80,40,.35);
+  box-shadow:
+    0 12px 35px rgba(255,35,15,.2),
+    inset 0 1px rgba(255,255,255,.2);
+}
+
+.primary:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 17px 45px rgba(255,35,15,.32),
+    0 0 25px rgba(255,50,20,.12);
+}
+
+.secondary{
+  background:rgba(5,8,10,.58);
+  backdrop-filter:blur(12px);
+}
+
+.secondary:hover{
+  border-color:rgba(255,255,255,.25);
+  transform:translateY(-4px);
+}
+
+.stats{
+  display:flex;
+  max-width:590px;
+  margin-top:42px;
+  background:rgba(3,7,9,.6);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(16px);
+  border-radius:17px;
+  overflow:hidden;
+  animation:rise .8s .32s both;
+}
+
+.stat{
+  flex:1;
+  padding:16px 23px;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+
+.stat:last-child{
+  border:0;
+}
+
+.stat b{
+  font-size:18px;
+}
+
+.stat small{
+  display:block;
+  color:#718087;
+  font-size:9px;
+  margin-top:4px;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+  padding:105px 0;
+  position:relative;
+}
+
+.eyebrow{
+  color:#ff4b27;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2.3px;
+  text-transform:uppercase;
+}
+
+.heading{
+  font-family:"Space Grotesk";
+  font-size:clamp(35px,5vw,57px);
+  letter-spacing:-2.5px;
+  margin-top:9px;
+}
+
+.sub{
+  max-width:630px;
+  margin-top:12px;
+  color:var(--muted);
+  line-height:1.75;
+  font-size:13px;
+}
+
+/* ================= SERVICES ================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-top:42px;
+}
+
+.card{
+  position:relative;
+  padding:26px;
+  min-height:250px;
+  border-radius:21px;
+  border:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.012)
+    );
+  overflow:hidden;
+  transform-style:preserve-3d;
+  transition:
+    transform .2s,
+    border-color .3s,
+    box-shadow .3s;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-90px;
+  top:-90px;
+  border-radius:50%;
+  background:#ff3518;
+  filter:blur(85px);
+  opacity:0;
+  transition:.35s;
+}
+
+.card:hover{
+  border-color:rgba(255,65,30,.35);
+  box-shadow:
+    0 20px 65px rgba(0,0,0,.35),
+    0 0 30px rgba(255,40,15,.05);
+}
+
+.card:hover:before{
+  opacity:.14;
+}
+
+.icon{
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  font-size:19px;
+  color:#ff704e;
+  background:rgba(255,55,25,.08);
+  border:1px solid rgba(255,70,35,.2);
+  box-shadow:inset 0 0 20px rgba(255,30,10,.03);
+}
+
+.card h3{
+  margin-top:21px;
+  font-size:17px;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.75;
+  margin-top:8px;
+}
+
+.bottom{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  margin-top:24px;
+}
+
+.price{
+  font-size:22px;
+  font-weight:900;
+}
+
+.price small{
+  display:block;
+  color:#718087;
+  font-size:9px;
+  font-weight:400;
+  margin-bottom:4px;
+}
+
+.order{
+  color:#ffc0b3;
+  font-size:11px;
+  font-weight:800;
+}
+
+.order:hover{
+  color:#fff;
+}
+
+/* ================= WHY ================= */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+  margin-top:40px;
+}
+
+.feature{
+  padding:24px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:17px;
+  background:rgba(255,255,255,.025);
+  transition:.3s;
+}
+
+.feature:hover{
+  transform:translateY(-4px);
+  border-color:rgba(255,70,30,.25);
+  background:rgba(255,50,20,.035);
+}
+
+.feature strong{
+  font-size:13px;
+}
+
+.feature p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+  margin-top:7px;
+}
+
+/* ================= PROCESS ================= */
+
+.process{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+  margin-top:40px;
+}
+
+.step{
+  position:relative;
+  padding:23px;
+  min-height:170px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:17px;
+  background:rgba(255,255,255,.025);
+}
+
+.num{
+  font-family:"Space Grotesk";
+  font-size:31px;
+  font-weight:800;
+  color:#ff4b27;
+  text-shadow:0 0 20px rgba(255,60,25,.2);
+}
+
+.step h3{
+  font-size:14px;
+  margin-top:13px;
+}
+
+.step p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+  margin-top:6px;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+  position:relative;
+  padding:70px 25px;
+  text-align:center;
+  overflow:hidden;
+  border-radius:27px;
+  border:1px solid rgba(255,55,25,.25);
+  background:
+    radial-gradient(
+      circle at 50% 120%,
+      rgba(255,50,20,.18),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 15% 0,
+      rgba(0,200,255,.07),
+      transparent 35%
+    ),
+    rgba(255,255,255,.025);
+}
+
+.cta:before{
+  content:"DRAGON";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  font-family:"Space Grotesk";
+  font-size:clamp(70px,15vw,170px);
+  font-weight:900;
+  color:rgba(255,255,255,.018);
+  pointer-events:none;
+}
+
+.cta>*{
+  position:relative;
+  z-index:2;
+}
+
+.cta h2{
+  font-family:"Space Grotesk";
+  font-size:clamp(36px,5vw,59px);
+  letter-spacing:-2.5px;
+}
+
+.cta p{
+  max-width:550px;
+  margin:13px auto 26px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* ================= FAQ ================= */
+
+.faq{
+  max-width:800px;
+  margin:40px auto 0;
+}
+
+details{
+  margin-bottom:9px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(255,255,255,.025);
+  transition:.3s;
+}
+
+details[open]{
+  border-color:rgba(255,65,30,.25);
+}
+
+summary{
+  cursor:pointer;
+  list-style:none;
+  padding:18px;
+  font-size:12px;
+  font-weight:700;
+}
+
+summary::-webkit-details-marker{
+  display:none;
+}
+
+details p{
+  padding:0 18px 18px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  padding:30px 0;
+  border-top:1px solid rgba(255,255,255,.07);
+  color:#65737a;
+  font-size:10px;
+}
+
+.foot{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+
+/* ================= FLOAT BUTTON ================= */
+
+.float{
+  position:fixed;
+  right:17px;
+  bottom:17px;
+  z-index:70;
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:
+    linear-gradient(135deg,#ff4b25,#c10d0d);
+  border:1px solid rgba(255,100,70,.35);
+  box-shadow:
+    0 12px 35px rgba(255,40,20,.28),
+    0 0 25px rgba(255,40,20,.12);
+  font-size:10px;
+  font-weight:900;
+  animation:floatPulse 2.5s ease-in-out infinite;
+}
+
+/* ================= REVEAL ================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:.75s ease;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes rise{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes dragonZoom{
+  from{
+    transform:scale(1.04);
+  }
+  to{
+    transform:scale(1.10);
+  }
+}
+
+@keyframes glowPulse{
+  0%,100%{
+    opacity:.55;
+    transform:scale(1);
+  }
+  50%{
+    opacity:1;
+    transform:scale(1.12);
+  }
+}
+
+@keyframes dotPulse{
+  0%,100%{
+    transform:scale(1);
+  }
+  50%{
+    transform:scale(1.45);
+  }
+}
+
+@keyframes floatPulse{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-5px);
+  }
+}
+
+@keyframes scan{
+  from{
+    transform:translateY(-15%);
+  }
+  to{
+    transform:translateY(15%);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+  .links{
+    position:fixed;
+    display:none;
+    top:70px;
+    left:15px;
+    right:15px;
+    padding:12px;
+    flex-direction:column;
+    gap:2px;
+    background:rgba(2,4,5,.94);
+    backdrop-filter:blur(22px);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:17px;
+  }
+
+  .links.open{
+    display:flex;
+  }
+
+  .links a{
+    padding:12px;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .hero{
+    align-items:flex-end;
+    min-height:100svh;
+  }
+
+  .hero-bg{
+    background-position:63% center;
+  }
+
+  .hero-bg:after{
+    background:
+      linear-gradient(
+        0deg,
+        #030303 3%,
+        rgba(3,3,3,.78) 45%,
+        rgba(3,3,3,.18) 100%
+      );
+  }
+
+  .dragon-glow{
+    right:-220px;
+  }
+
+  .hero-content{
+    padding:140px 0 60px;
+  }
+
+  h1{
+    font-size:clamp(46px,14vw,75px);
+    letter-spacing:-3.5px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .features,
+  .process{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats{
+    max-width:100%;
+  }
+
+  .stat{
+    padding:14px 11px;
+  }
+
+  .stat b{
+    font-size:15px;
+  }
+}
+
+@media(max-width:500px){
+
+  .wrap{
+    width:calc(100% - 26px);
+  }
+
+  section{
+    padding:76px 0;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .features,
+  .process{
+    grid-template-columns:1fr;
+  }
+
+  .foot{
+    flex-direction:column;
+  }
+
+  .hero-bg{
+    background-position:61% center;
+  }
+
+  .stats{
+    margin-top:32px;
+  }
+
+  .stat{
+    padding:13px 8px;
+  }
+
+  .stat b{
+    font-size:13px;
+  }
+
+  .stat small{
+    font-size:8px;
+  }
 }
 </style>
 </head>
+
 <body>
 
-<nav class="nav">
-  <div class="container nav-inner">
-    <a href="#home" class="brand">
-      <div class="logo"><span>404</span></div>
-      <div class="brand-name">Allz<b>DigitalStore</b></div>
+<!-- ================= NAVBAR ================= -->
+
+<nav id="nav">
+  <div class="wrap nav">
+
+    <a class="brand" href="#home">
+      <span class="mark"><span>X</span></span>
+      AllzDigitalStore
     </a>
-    <button class="menu" id="menuBtn" aria-label="Menu">☰</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#home">Home</a><a href="#paket">Paket</a><a href="#jasa-bot">Jasa Bot</a><a href="#fitur">Keunggulan</a>
-      <a href="#cara-order">Cara Order</a><a href="#faq">FAQ</a><a href="#kontak">Kontak</a>
+
+    <div class="links" id="links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#process">Cara Order</a>
+      <a href="#faq">FAQ</a>
+      <a class="navcta" href="#contact">Order Now</a>
     </div>
+
+    <button class="menu" id="menu">☰</button>
+
   </div>
 </nav>
 
+
 <main>
+
+<!-- ================= HERO ================= -->
+
 <section class="hero" id="home">
-  <div class="container hero-grid">
-    <div>
-      <div class="badge"><span class="dot"></span> Website modern mulai Rp15.000</div>
-      <h1>Bangun Website Keren untuk <span class="gradient">Brand & Bisnis</span> Kamu.</h1>
-      <p>AllzDigitaStore menyediakan paket website terjangkau dengan desain modern, responsive, dan siap dipakai. Order mudah melalui WhatsApp atau Telegram.</p>
+
+  <div class="hero-bg" id="dragonBackground"></div>
+
+  <div class="dragon-glow"></div>
+  <div class="dragon-glow blue"></div>
+
+  <div class="scan"></div>
+
+  <div class="wrap">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        <span class="dot"></span>
+        Dragon Digital Store
+      </div>
+
+      <h1>
+        AWAKEN YOUR<br>
+        <span class="fire">DIGITAL</span><br>
+        <span class="cyan">POWER.</span>
+      </h1>
+
+      <p>
+        Website modern, jasa bikin bot, desain logo,
+        AM Premium dan berbagai kebutuhan digital.
+        Bangun project dengan konsep yang berani,
+        modern, dan dapat disesuaikan dengan request kamu.
+      </p>
+
       <div class="actions">
-        <a class="btn btn-primary" href="#paket">🚀 Lihat Paket</a>
-        <a class="btn btn-ghost" id="heroWa" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+
+        <a class="btn primary" href="#services">
+           Explore Services
+        </a>
+
+        <a class="btn secondary" href="#contact">
+          Order Sekarang →
+        </a>
+
       </div>
-    </div>
-    <div class="hero-card">
-      <div class="window">
-        <div class="window-top"><i class="circle"></i><i class="circle"></i><i class="circle"></i></div>
-        <div class="mock">
-          <div class="tag">ALLZDIGITALSTORE</div>
-          <div class="mock-title">Premium Website</div>
-          <div class="mock-price">Rp35K <small>/ project</small></div>
-          <div class="mock-list">
-            <span>Custom design</span><span>Responsive mobile</span><span>Katalog produk</span><span>WhatsApp order</span><span>Animasi modern</span>
-          </div>
+
+      <div class="stats">
+
+        <div class="stat">
+          <b>Rp15K+</b>
+          <small>Website</small>
         </div>
+
+        <div class="stat">
+          <b>Rp25K</b>
+          <small>Bot Service</small>
+        </div>
+
+        <div class="stat">
+          <b>Rp15K</b>
+          <small>Logo Design</small>
+        </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="paket">
-<div class="container">
-<div class="section-head"><div class="eyebrow">Pricing</div><h2>Pilih Paket Sesuai Kebutuhan</h2><p>Mulai dari kebutuhan sederhana sampai website bisnis yang lebih lengkap.</p></div>
-<div class="pricing" id="pricing"></div>
-</div>
-</section>
 
-<section id="jasa-bot">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Jasa Bot</div>
-      <h2>Bikin Bot Sesuai Request Kamu</h2>
-      <p>Butuh bot custom? Mulai Rp25.000 dan bebas request fitur sesuai kebutuhan.</p>
+<!-- ================= SERVICES ================= -->
+
+<section id="services">
+
+  <div class="wrap">
+
+    <div class="reveal">
+
+      <div class="eyebrow">01 / Services</div>
+
+      <h2 class="heading">
+        DIGITAL SERVICES.
+      </h2>
+
+      <p class="sub">
+        Pilih layanan yang kamu butuhkan.
+        Harga transparan dan request dapat
+        dibicarakan langsung.
+      </p>
+
     </div>
-    <div class="card" style="max-width:760px;margin:auto;text-align:center;border-color:rgba(34,211,238,.28);box-shadow:0 20px 60px rgba(34,211,238,.08)">
-      <div class="feature-icon">🌐</div>
-      <span class="tag">BEBAS REQUEST</span>
-      <h3 style="font-size:25px;margin-bottom:5px">Jasa Bikin Bot</h3>
-      <div class="price">Rp25.000 <small>/ project</small></div>
-      <ul style="text-align:left;max-width:500px;margin:0 auto 20px">
-        <li>Bebas request fitur sesuai kebutuhan</li>
-        <li>Bot WhatsApp / bot custom</li>
-        <li>Request command dan menu sesuai keinginan</li>
-        <li>Bisa request tampilan dan nama bot</li>
-        <li>Dibantu setup sampai siap dijalankan</li>
-      </ul>
-      <a class="btn btn-primary" id="botOrder" href="#" target="_blank" rel="noopener">Order Jasa Create Bot</a>
+
+
+    <div class="cards">
+
+      <article class="card tilt reveal">
+
+        <div class="icon">◈</div>
+
+        <h3>Website Development</h3>
+
+        <p>
+          Website modern, responsive, custom design,
+          katalog, tombol WhatsApp, animasi dan fitur
+          sesuai kebutuhan.
+        </p>
+
+        <div class="bottom">
+
+          <div class="price">
+            <small>Mulai dari</small>
+            Rp15K
+          </div>
+
+          <a class="order" href="#contact">
+            Order →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="card tilt reveal">
+
+        <div class="icon">⌁</div>
+
+        <h3>Jasa Bikin Bot</h3>
+
+        <p>
+          Pembuatan bot sesuai request untuk
+          kebutuhan project digital kamu.
+        </p>
+
+        <div class="bottom">
+
+          <div class="price">
+            <small>Harga</small>
+            Rp25K
+          </div>
+
+          <a class="order" href="#contact">
+            Order →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="card tilt reveal">
+
+        <div class="icon">✦</div>
+
+        <h3>Jasa Pembuat Logo</h3>
+
+        <p>
+          Logo custom dengan konsep visual yang
+          dapat disesuaikan dengan identitas brand.
+        </p>
+
+        <div class="bottom">
+
+          <div class="price">
+            <small>Harga</small>
+            Rp15K
+          </div>
+
+          <a class="order" href="#contact">
+            Order →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="card tilt reveal">
+
+        <div class="icon">✧</div>
+
+        <h3>AM Premium 1 Tahun</h3>
+
+        <p>
+          Layanan AM Premium dengan masa aktif
+          satu tahun.
+        </p>
+
+        <div class="bottom">
+
+          <div class="price">
+            <small>Harga</small>
+            Rp3K
+          </div>
+
+          <a class="order" href="#contact">
+            Order →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="card tilt reveal">
+
+        <div class="icon">+</div>
+
+        <h3>Custom Request</h3>
+
+        <p>
+          Punya kebutuhan digital lain?
+          Kirim detail request untuk dikonsultasikan.
+        </p>
+
+        <div class="bottom">
+
+          <div class="price">
+            <small>Harga</small>
+            Request
+          </div>
+
+          <a class="order" href="#contact">
+            Konsultasi →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <article class="card tilt reveal">
+
+        <div class="icon">∞</div>
+
+        <h3>Digital Service</h3>
+
+        <p>
+          Berbagai kebutuhan digital lainnya
+          dapat dibicarakan melalui kontak kami.
+        </p>
+
+        <div class="bottom">
+
+          <div class="price">
+            <small>Harga</small>
+            Custom
+          </div>
+
+          <a class="order" href="#contact">
+            Hubungi →
+          </a>
+
+        </div>
+
+      </article>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="fitur">
-<div class="container">
-<div class="section-head"><div class="eyebrow">Why Us</div><h2>Kenapa AllzDigitalStore?</h2><p>Fokus pada tampilan menarik, ringan, dan mudah digunakan.</p></div>
-<div class="features">
-<div class="card"><div class="feature-icon">⚡</div><h3>Fast & Ringan</h3><p>Struktur website sederhana agar nyaman dibuka.</p></div>
-<div class="card"><div class="feature-icon">📱</div><h3>Responsive</h3><p>Menyesuaikan HP, tablet, dan desktop.</p></div>
-<div class="card"><div class="feature-icon">🎨</div><h3>Modern Design</h3><p>Desain modern dengan animasi dan interaksi halus.</p></div>
-<div class="card"><div class="feature-icon">🛠️</div><h3>Support</h3><p>Admin membantu proses order dan kebutuhan website.</p></div>
-</div>
-</div>
+
+<!-- ================= WHY US ================= -->
+
+<section id="why">
+
+  <div class="wrap">
+
+    <div class="reveal">
+
+      <div class="eyebrow">02 / Why Us</div>
+
+      <h2 class="heading">
+        BUILT DIFFERENT.
+      </h2>
+
+      <p class="sub">
+        Bukan sekadar menjual layanan.
+        Kami ingin setiap project punya tampilan
+        dan karakter yang kuat.
+      </p>
+
+    </div>
+
+
+    <div class="features">
+
+      <div class="feature reveal">
+        <strong>⚡ Fast Process</strong>
+        <p>
+          Alur order dibuat simpel dan mudah dipahami.
+        </p>
+      </div>
+
+      <div class="feature reveal">
+        <strong>◈ Modern Design</strong>
+        <p>
+          Konsep visual modern untuk kebutuhan digital.
+        </p>
+      </div>
+
+      <div class="feature reveal">
+        <strong>⌁ Custom Request</strong>
+        <p>
+          Konsep dan kebutuhan bisa dibicarakan.
+        </p>
+      </div>
+
+      <div class="feature reveal">
+        <strong>✓ Support</strong>
+        <p>
+          Hubungi kami jika membutuhkan informasi.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<section>
-<div class="container">
-<div class="section-head"><div class="eyebrow">Add-on</div><h2>Tambahkan Fitur</h2><p>Layanan tambahan dapat dipesan di luar paket utama.</p></div>
-<div class="addons">
-<div class="card addon"><div><h3>🎨 Custom Design</h3><p>Desain sesuai brief</p></div><strong>+10K</strong></div>
-<div class="card addon"><div><h3>🌐 Custom Domain</h3><p>Harga tergantung domain</p></div><strong>+15K</strong></div>
-<div class="card addon"><div><h3>🛒 Tambah Katalog</h3><p>Produk tambahan</p></div><strong>+5K</strong></div>
-<div class="card addon"><div><h3>🔐 Login/Register</h3><p>Sistem autentikasi</p></div><strong>+15K</strong></div>
-<div class="card addon"><div><h3>🗄️ Database</h3><p>Fitur berbasis data</p></div><strong>+20K</strong></div>
-<div class="card addon"><div><h3>📊 Dashboard Admin</h3><p>Kelola konten</p></div><strong>+25K</strong></div>
-<div class="card addon"><div><h3>🖥️ Hosting</h3><p>Sesuai layanan</p></div><strong>+10K</strong></div>
-<div class="card addon"><div><h3>🔧 Maintenance</h3><p>Perawatan bulanan</p></div><strong>+10K/bln</strong></div>
-</div>
-</div>
+
+<!-- ================= PROCESS ================= -->
+
+<section id="process">
+
+  <div class="wrap">
+
+    <div class="reveal">
+
+      <div class="eyebrow">03 / How It Works</div>
+
+      <h2 class="heading">
+        ORDER IN 4 STEPS.
+      </h2>
+
+      <p class="sub">
+        Dari ide sampai project dimulai,
+        semuanya dibuat sederhana.
+      </p>
+
+    </div>
+
+
+    <div class="process">
+
+      <div class="step reveal">
+
+        <div class="num">01</div>
+
+        <h3>Pilih Layanan</h3>
+
+        <p>
+          Tentukan layanan yang ingin dipesan.
+        </p>
+
+      </div>
+
+
+      <div class="step reveal">
+
+        <div class="num">02</div>
+
+        <h3>Hubungi Kami</h3>
+
+        <p>
+          Kirim pesan melalui WhatsApp.
+        </p>
+
+      </div>
+
+
+      <div class="step reveal">
+
+        <div class="num">03</div>
+
+        <h3>Kirim Request</h3>
+
+        <p>
+          Jelaskan detail kebutuhan kamu.
+        </p>
+
+      </div>
+
+
+      <div class="step reveal">
+
+        <div class="num">04</div>
+
+        <h3>Project Dimulai</h3>
+
+        <p>
+          Setelah detail disepakati,
+          project diproses.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<section id="cara-order">
-<div class="container">
-<div class="section-head"><div class="eyebrow">Order</div><h2>Cara Pemesanan</h2><p>Proses sederhana dari pemilihan paket sampai website selesai.</p></div>
-<div class="steps">
-<div class="card step"><div class="num">01</div><h3>Pilih Paket</h3><p>Tentukan paket website.</p></div>
-<div class="card step"><div class="num">02</div><h3>Hubungi Admin</h3><p>WhatsApp atau Telegram.</p></div>
-<div class="card step"><div class="num">03</div><h3>Kirim Data</h3><p>Berikan konten dan kebutuhan.</p></div>
-<div class="card step"><div class="num">04</div><h3>Pembayaran</h3><p>Ikuti instruksi admin.</p></div>
-<div class="card step"><div class="num">05</div><h3>Pengerjaan</h3><p>Website diproses sesuai brief.</p></div>
-</div>
-</div>
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact">
+
+  <div class="wrap">
+
+    <div class="cta reveal">
+
+      <h2>
+        READY TO
+        <span class="fire">CREATE?</span>
+      </h2>
+
+      <p>
+        Punya project atau kebutuhan digital?
+        Hubungi AllzDigitalStore dan ceritakan
+        apa yang ingin kamu buat.
+      </p>
+
+      <a
+        class="btn primary"
+        id="waButton"
+        href="#"
+        target="_blank"
+      >
+        WhatsApp Kami →
+      </a>
+
+    </div>
+
+  </div>
+
 </section>
 
-<section>
-<div class="container">
-<div class="section-head"><div class="eyebrow">Contact</div><h2>Hubungi Admin</h2><p>Gunakan salah satu akun yang tersedia untuk melakukan pemesanan.</p></div>
-<div class="contact-grid">
-<div class="card contact-card"><h3>💬 WhatsApp AllzDigital</h3><p>Admin utama untuk pemesanan.</p><a class="btn btn-primary" id="wa1" href="#" target="_blank" rel="noopener">Chat WhatsApp</a></div>
-<div class="card contact-card"><h3>✈️ Telegram AllzDigital</h3><p>Hubungi admin melalui Telegram.</p><a class="btn btn-ghost" id="tg1" href="#" target="_blank" rel="noopener">Telegram 1</a></div>
-</div>
-</div>
-</section>
+
+<!-- ================= FAQ ================= -->
 
 <section id="faq">
-<div class="container">
-<div class="section-head"><div class="eyebrow">FAQ</div><h2>Pertanyaan Umum</h2></div>
-<div class="faq">
-<details><summary>Apakah ada jasa bikin bot?</summary><p>Ada. Jasa bikin bot tersedia mulai Rp25.000 dan bebas request fitur sesuai kebutuhan. Hubungi admin untuk membahas detail bot yang diinginkan.</p></details>
-        <details><summary>Apakah website bisa dibuka di HP?</summary><p>Ya. Website dibuat responsive sehingga menyesuaikan ukuran layar.</p></details>
-<details><summary>Bagaimana cara order?</summary><p>Pilih paket kemudian tekan tombol order WhatsApp. Kamu juga dapat menghubungi salah satu akun Telegram.</p></details>
-<details><summary>Bisa request desain?</summary><p>Bisa. Sampaikan referensi dan kebutuhan kepada admin. Biaya tambahan dapat berlaku untuk custom tertentu.</p></details>
-<details><summary>Apakah domain dan hosting termasuk?</summary><p>Tergantung paket atau kesepakatan. Domain dan hosting dapat ditambahkan sebagai layanan tambahan.</p></details>
-<details><summary>Berapa lama pengerjaan?</summary><p>Waktu pengerjaan bergantung pada paket, tingkat customisasi, dan kelengkapan data yang diberikan.</p></details>
-</div>
-</div>
+
+  <div class="wrap">
+
+    <div class="reveal" style="text-align:center">
+
+      <div class="eyebrow">
+        04 / FAQ
+      </div>
+
+      <h2 class="heading">
+        FREQUENTLY ASKED.
+      </h2>
+
+    </div>
+
+
+    <div class="faq">
+
+      <details class="reveal">
+
+        <summary>
+          Apakah website bisa custom?
+        </summary>
+
+        <p>
+          Bisa. Desain, warna, teks, fitur dan konsep
+          dapat disesuaikan dengan kebutuhan.
+        </p>
+
+      </details>
+
+
+      <details class="reveal">
+
+        <summary>
+          Berapa harga website?
+        </summary>
+
+        <p>
+          Paket website tersedia mulai Rp15.000.
+          Harga dapat menyesuaikan fitur tambahan.
+        </p>
+
+      </details>
+
+
+      <details class="reveal">
+
+        <summary>
+          Apakah bisa request bot?
+        </summary>
+
+        <p>
+          Bisa. Jasa bikin bot tersedia Rp25.000
+          dan detail request dapat dibicarakan.
+        </p>
+
+      </details>
+
+
+      <details class="reveal">
+
+        <summary>
+          Apakah logo bisa custom?
+        </summary>
+
+        <p>
+          Bisa. Jasa pembuat logo tersedia Rp15.000
+          dengan konsep sesuai kebutuhan.
+        </p>
+
+      </details>
+
+
+      <details class="reveal">
+
+        <summary>
+          Apakah bisa request layanan lain?
+        </summary>
+
+        <p>
+          Bisa. Silakan hubungi kami dan jelaskan
+          kebutuhan digital yang kamu inginkan.
+        </p>
+
+      </details>
+
+    </div>
+
+  </div>
+
 </section>
 
-<section id="kontak">
-<div class="container">
-<div class="cta">
-<div class="eyebrow">Ready?</div>
-<h2>Siap Punya Website atau Bot Sendiri?</h2>
-<p>Pilih paket website atau jasa bot, lalu hubungi admin AllzDigitaStore melalui WhatsApp atau Telegram.</p>
-<div class="actions" style="justify-content:center">
-<a class="btn btn-primary" id="ctaWa1" href="#" target="_blank" rel="noopener">💬 WhatsApp Admin</a>
-<a class="btn btn-ghost" id="ctaTg1" href="#" target="_blank" rel="noopener">✈️ Telegram Admin</a>
-</div>
-</div>
-</div>
-</section>
 </main>
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
-<div class="container footer-inner">
-<div>© <span id="year"></span> AllzDigitaStore. All rights reserved.</div>
-<div class="footer-links"><a href="#paket">Paket</a><a href="#faq">FAQ</a><a href="#kontak">Kontak</a></div>
-</div>
+
+  <div class="wrap foot">
+
+    <span>
+      © 2026 AllzDigitalStore
+    </span>
+
+    <span>
+      Website • Bot • Logo • Digital Service
+    </span>
+
+  </div>
+
 </footer>
 
-<div class="float">
-<a id="floatWa1" href="#" target="_blank" rel="noopener" aria-label="WhatsApp 1">💬</a>
-<a id="floatTg1" href="#" target="_blank" rel="noopener" aria-label="Telegram 1">✈️</a>
-</div>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+
+<a
+  class="float"
+  id="floatWA"
+  href="#"
+  target="_blank"
+>
+  WA
+</a>
+
 
 <script>
+
 /* =====================================================
-   KONFIGURASI ALLZDIGITASTORE
-   GANTI 4 DATA DI BAWAH DENGAN AKUN ASLI KAMU
+   CONFIG
    ===================================================== */
-const STORE = {
-  whatsapp1: "628212165939",
-  telegram1: "https://t.me/vnocyhx"
-};
 
-const packages = [
- {name:"STARTER",price:15000,tag:"MULAI",features:["1 halaman website","Responsive HP & PC","Profil + deskripsi","Tombol WhatsApp","Social media","Animasi ringan"]},
- {name:"BASIC",price:20000,tag:"POPULAR",features:["Semua fitur Starter","About & Services","Galeri foto","Desain modern","Animasi & hover effect","Navigasi modern"]},
- {name:"PRO",price:25000,tag:"BEST SELLER",popular:true,features:["Semua fitur Basic","Katalog produk","Harga produk","Order WhatsApp","Testimoni","FAQ","Dark/Light mode"]},
- {name:"BUSINESS",price:30000,tag:"BUSINESS",features:["Semua fitur Pro","Search produk","Filter kategori","Form order","Banner promosi","Statistik sederhana"]},
- {name:"PREMIUM",price:35000,tag:"PREMIUM",features:["Semua fitur Business","Custom design","UI premium","Animasi modern","Custom section","Optimasi mobile","Revisi minor"]}
-];
+/*
+   1. MASUKKAN LINK CATBOX DRAGON DI SINI.
 
-const rupiah=n=>new Intl.NumberFormat("id-ID").format(n);
-const wa=(number,text)=>`https://wa.me/${number}?text=${encodeURIComponent(text)}`;
-const generic="Halo AllzDigitaStore 👋\n\nSaya ingin bertanya tentang jasa pembuatan website.";
-const botOrderText="Halo AllzDigitalStore 👋\n\nSaya ingin memesan Jasa Bikin Bot.\n\nHarga: Rp25.000\nRequest: [tulis fitur bot yang saya inginkan]\n\nMohon info proses pemesanannya.";
+   Contoh:
+   const DRAGON_BG =
+   "https://files.catbox.moe/abc123.jpg";
 
-function orderText(p){
- return `Halo AllzDigitaStore 👋\n\nSaya ingin memesan:\n\nPaket: ${p.name}\nHarga: Rp${rupiah(p.price)}\n\nMohon informasi mengenai proses pemesanannya.`;
+   Bisa .jpg / .jpeg / .png / .webp
+*/
+
+const DRAGON_BG = "https://files.catbox.moe/utebt3.jpg";
+
+
+/*
+   2. MASUKKAN NOMOR WHATSAPP DI SINI.
+
+   Format:
+   628xxxxxxxxxx
+
+   Jangan gunakan + atau spasi.
+*/
+
+const WHATSAPP_NUMBER = "6283151974614";
+
+
+/* =====================================================
+   DRAGON BACKGROUND
+   ===================================================== */
+
+const dragonBackground =
+  document.getElementById("dragonBackground");
+
+if(
+  DRAGON_BG &&
+  DRAGON_BG !== "https://files.catbox.moe/utebt3.jpg"
+){
+  dragonBackground.style.backgroundImage =
+    `url("${DRAGON_BG}")`;
 }
 
-document.getElementById("pricing").innerHTML=packages.map(p=>`
-<article class="card ${p.popular?"popular":""}">
-<span class="tag">${p.tag}</span><h3>${p.name}</h3>
-<div class="price">Rp${rupiah(p.price)} <small>/ project</small></div>
-<ul>${p.features.map(x=>`<li>${x}</li>`).join("")}</ul>
-<div style="display:grid;gap:8px">
-<a class="btn btn-primary" href="${wa(STORE.whatsapp1,orderText(p))}" target="_blank" rel="noopener">Order via WhatsApp</a>
-</div>
-</article>`).join("");
 
-document.getElementById("botOrder").href=wa(STORE.whatsapp1,botOrderText);
-document.getElementById("heroWa").href=wa(STORE.whatsapp1,generic);
-document.getElementById("wa1").href=wa(STORE.whatsapp1,generic);
-document.getElementById("tg1").href=STORE.telegram1;
-document.getElementById("tg2").href=STORE.telegram2;
-document.getElementById("ctaWa1").href=wa(STORE.whatsapp1,generic);
-document.getElementById("ctaTg1").href=STORE.telegram1;
-document.getElementById("ctaTg2").href=STORE.telegram2;
-document.getElementById("floatWa1").href=wa(STORE.whatsapp1,generic);
-document.getElementById("floatTg1").href=STORE.telegram1;
-document.getElementById("year").textContent=new Date().getFullYear();
+/* =====================================================
+   WHATSAPP
+   ===================================================== */
 
-const menuBtn=document.getElementById("menuBtn"),navLinks=document.getElementById("navLinks");
-menuBtn.addEventListener("click",()=>navLinks.classList.toggle("open"));
-navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>navLinks.classList.remove("open")));
+const message =
+  "Halo AllzDigitalStore, saya ingin order.";
+
+const waURL =
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+document.getElementById("waButton").href = waURL;
+document.getElementById("floatWA").href = waURL;
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+const nav =
+  document.getElementById("nav");
+
+const menu =
+  document.getElementById("menu");
+
+const links =
+  document.getElementById("links");
+
+
+window.addEventListener("scroll",()=>{
+
+  nav.classList.toggle(
+    "scrolled",
+    window.scrollY > 20
+  );
+
+});
+
+
+menu.onclick=()=>{
+
+  links.classList.toggle("open");
+
+  menu.textContent =
+    links.classList.contains("open")
+    ? "×"
+    : "☰";
+
+};
+
+
+document
+  .querySelectorAll(".links a")
+  .forEach(a=>{
+
+    a.onclick=()=>{
+
+      links.classList.remove("open");
+
+      menu.textContent="☰";
+
+    };
+
+  });
+
+
+/* =====================================================
+   REVEAL ANIMATION
+   ===================================================== */
+
+const observer =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("show");
+
+          observer.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(el=>observer.observe(el));
+
+
+/* =====================================================
+   3D CARD TILT
+   ===================================================== */
+
+document
+  .querySelectorAll(".tilt")
+  .forEach(card=>{
+
+    card.addEventListener(
+      "pointermove",
+      e=>{
+
+        if(window.innerWidth < 700)
+          return;
+
+        const rect =
+          card.getBoundingClientRect();
+
+        const x =
+          (e.clientX-rect.left) /
+          rect.width - .5;
+
+        const y =
+          (e.clientY-rect.top) /
+          rect.height - .5;
+
+        card.style.transform =
+          `perspective(900px)
+           rotateX(${-y*5}deg)
+           rotateY(${x*5}deg)
+           translateY(-6px)`;
+
+      }
+    );
+
+
+    card.addEventListener(
+      "pointerleave",
+      ()=>{
+        card.style.transform="";
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   SMOOTH BUTTON FEEDBACK
+   ===================================================== */
+
+document
+  .querySelectorAll("a[href^='#']")
+  .forEach(link=>{
+
+    link.addEventListener(
+      "click",
+      ()=>{
+
+        if(
+          link.getAttribute("href") !== "#"
+        ){
+
+          document.body.style.overflowX="hidden";
+
+        }
+
+      }
+    );
+
+  });
+
 </script>
+
 </body>
 </html>
